@@ -11,7 +11,6 @@ import (
 
 
 func CreateUser(req *params.UserCreateRequest) *views.Response {
-	// step : (4) buat model
 	var user models.User
 
 	hash, err := bcrypt.GenerateFromPassword([]byte(req.Password), 10)
@@ -24,19 +23,13 @@ func CreateUser(req *params.UserCreateRequest) *views.Response {
 	user.Username = req.Username
 	
 	user.SaveUser()
-	// step : (5) kirim ke repositories
-	// err = repositories.CreateUser(&model)
 
-	// step : (7) buat sebuah views
 	v := views.SuccessCreateResponse(user, "created success!")
-	// step : (8) kembalikan views ke controller
 	return v
 }
 
 func ReadUser() *views.Response {
 	data := models.SaveData
 	v := views.SuccessCreateResponse(data, "created success!")
-
-	// step : (8) kembalikan views ke controller
 	return v
 }
